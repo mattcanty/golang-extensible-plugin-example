@@ -1,0 +1,11 @@
+plugins:
+  - name: plugin-1
+    parameters: |
+      message: Hello, world!
+  - name: plugin-2
+    parameters: |
+      secret: shhhhhh
+  - name: plugin-3
+    parameters: |
+      nestedStuff:
+        name: Nested Name
