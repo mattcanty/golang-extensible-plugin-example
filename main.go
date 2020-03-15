@@ -30,10 +30,11 @@ func main() {
 
 func runPlugin(name string, parameters string) {
 	plugin, err := plugin.Open(name)
+
 	if err != nil {
 		panic(err)
 	}
-	loadFunc, err := plugin.Lookup("Load")
+	cfg, err := plugin.Lookup("PluginConfig")
 	if err != nil {
 		panic(err)
 	}
@@ -45,8 +46,11 @@ func runPlugin(name string, parameters string) {
 	if err != nil {
 		panic(err)
 	}
+	err = yaml.Unmarshal([]byte(parameters), cfg)
+	if err != nil {
+		panic(err)
+	}
 
-	loadFunc.(func(string))(parameters)
 	readFunc.(func())()
 	writeFunc.(func())()
 }
@@ -54,7 +58,7 @@ func runPlugin(name string, parameters string) {
 func loadConfig() pluginsConfig {
 	contents, err := ioutil.ReadFile("config.yaml")
 	if err != nil {
-		log.Fatalf("Failed to fin Gobee config %s\n", err)
+		log.Fatalf("Failed to find config %s\n", err)
 	}
 
 	var cfg pluginsConfig
