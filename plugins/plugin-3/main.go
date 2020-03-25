@@ -32,6 +32,6 @@ func WriteChanges() {
 	println(" ", PluginConfig.NestedStuff.Name)
 
 	for _, number := range PluginConfig.NestedStuff.NestAgain.Array {
-		println(number)
+		println(" ", number)
 	}
 }
