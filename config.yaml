@@ -2,10 +2,21 @@ plugins:
   - name: plugin-1
     parameters: |
       message: Hello, world!
+    test:
+      message: Hello, world!
   - name: plugin-2
     parameters: |
+      secret: shhhhhh
+    test:
       secret: shhhhhh
   - name: plugin-3
     parameters: |
       nestedStuff:
         name: Nested Name
+    test:
+      nestedStuff:
+        name: Nested Name
+        nestAgain:
+          array:
+            - 1
+            - 2

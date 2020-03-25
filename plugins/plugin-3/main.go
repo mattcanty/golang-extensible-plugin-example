@@ -5,11 +5,16 @@ var PluginConfig config
 
 // Config for this plugin
 type config struct {
-	NestedStuff nestedItem `yaml:"nestedStuff"`
+	NestedStuff nestedItem
 }
 
 type nestedItem struct {
-	Name string
+	Name      string
+	NestAgain otherNest
+}
+
+type otherNest struct {
+	Array []int
 }
 
 // ReadChanges reads changes this plugin will make
@@ -26,4 +31,7 @@ func WriteChanges() {
 
 	println(" ", PluginConfig.NestedStuff.Name)
 
+	for _, number := range PluginConfig.NestedStuff.NestAgain.Array {
+		println(number)
+	}
 }
